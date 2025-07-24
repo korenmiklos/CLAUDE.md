@@ -1,33 +1,45 @@
 # User preferences
+
 ## Software tools
+
 ### Shell (mandatory)
+
 All scripts should be runnable from the command line. The default shell of the user is `fish`, but scripts should be compatible with `bash` as well. All scripts are called from the root of the folder, and relative paths should be used to refer to files in subfolders.
 
 ### Make (mandatory)
+
 A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting.
 
 ### Bead (mandatory)
+
 External data dependencies are managed by `bead`. The documentation for `bead` is available in the Appendix of this document. Metadata for `bead` is stored in `.bead-meta/` subfolder in the root of the folder. Attached input datasets are `input/` subfolder. If any input data is missing, `bead input load <name>` should load it. If a dataset is out of date, `bead input update <name>` should update it. The `temp/` subfolder is used for temporary files generated during the workflow. The `output/` subfolder is used for final output files, such as reports and figures.
 
 ### git (mandatory)
+
 The folder is under version control with `git`. `.gitignore` should reflect the set of software tools used. Because `bead` is always used, `.gitignore` should always include `input/` and `temp/` folders.
 
 ### Stata (optional)
-Data wrangling and statistical analysis is mostly done in Stata. All steps are in .do files, which should be callable from the command line, including from the Makefile, with `stata -b do <filename>`. Assume the availability of Stata 18. 
+
+Data wrangling and statistical analysis is mostly done in Stata. All steps are in .do files, which should be callable from the command line, including from the Makefile, with `stata -b do <filename>`. Assume the availability of Stata 18.
 
 ### Julia (optional)
-Modeling, simulation, larger data analysis tasks are done in Julia. All scripts should be runnable from the command line, and should be compatible with Julia 1.10 or later. The scripts should be organized in a way that allows for easy execution from the Makefile. Julia packatges should be managed using `Pkg` and should be listed in a `Project.toml` file in the root of the folder.
+
+Modeling, simulation, larger data analysis tasks are done in Julia. All scripts should be runnable from the command line, and should be compatible with Julia 1.10 or later. The scripts should be organized in a way that allows for easy execution from the Makefile. Julia packages should be managed using `Pkg` and should be listed in a `Project.toml` file in the root of the folder.
 
 ### Python (optional)
-When Julia is not suitable, Python is used for data analysis and manipulation. All scripts should be runnable from the command line, and should be compatible with Python 3.11 or later. Python packages should be managed using `uv`. User prefers raw Python (`CSV`, dictionaries) for simple data manipulation tasks. For larger tasks, `polars` ise preferred. All Python scripts should be organized in a way that allows for easy execution from the Makefile.
+
+When Julia is not suitable, Python is used for data analysis and manipulation. All scripts should be runnable from the command line, and should be compatible with Python 3.11 or later. Python packages should be managed using `uv`. User prefers raw Python (`CSV`, dictionaries) for simple data manipulation tasks. For larger tasks, `polars` is preferred. All Python scripts should be organized in a way that allows for easy execution from the Makefile.
 
 ### DuckDB (optional)
+
 For especially large datasets, DuckDB is used for data manipulation. Assume the availability of DuckDB 1.2, used via the command line interface. DuckDB scripts should be raw .sql, organized in a way that allows for easy execution from the Makefile. The DuckDB scripts should be compatible with the command line interface and should not rely on any specific Python or Julia libraries.
 
-#### LaTeX (optional)
-For reporting, LaTeX is used. Assume the availability of TeX Live 2024. `pdflatex` is preferred for compiling LaTeX documents, but for more complex documents, `lualatex` can be used. Use `bibtex` for bibliography management with the Harvard citation style. 
+### LaTeX (optional)
+
+For reporting, LaTeX is used. Assume the availability of TeX Live 2024. `pdflatex` is preferred for compiling LaTeX documents, but for more complex documents, `lualatex` can be used. Use `bibtex` for bibliography management with the Harvard citation style.
 
 ## Folder structure
+
 The root folder contains `README.md` and `Makefile` as well as software-specific metadata files such as `Project.toml` for Julia and `requirements.txt` for Python. Every other content lives in subfolders.
 
 The `README.md` document should explain the sources of the data, the software dependencies, and the overall workflow. It should follow the _Social Science Data Editors Template README_ available in the Appendix of this document.
@@ -39,12 +51,14 @@ Code lives under `code/` organized into subfolders by purpose (not by software).
 The `docs/` subfolder contains documentation files, such as running lab notes or any other relevant documentation. The preferred format for documentation is Markdown. The `data/external/` subfolder is used for any additional data files that are not managed by `bead`, but this should be avoided if possible. 
 
 ## File formats
-When possible, plain text files are preffered over proprietary binary formats. All text files should be UTF-8 encoded. For interoparability among the various tools, CSV is preferred for tabular data, with the first row as header. Stata files should be in .dta format. For larger datasets to be processed with Julia, Python or DuckDB, Parquet is preferred. For LaTeX documents, the preferred format is .tex with UTF-8 encoding. General text notes and documentation should be in Markdown format (.md) with UTF-8 encoding. Figures should be in PDF, PNG, EPS or SVG format, with PDF preferred for vector graphics and PNG for raster graphics.
+
+When possible, plain text files are preferred over proprietary binary formats. All text files should be UTF-8 encoded. For interoperability among the various tools, CSV is preferred for tabular data, with the first row as header. Stata files should be in .dta format. For larger datasets to be processed with Julia, Python or DuckDB, Parquet is preferred. For LaTeX documents, the preferred format is .tex with UTF-8 encoding. General text notes and documentation should be in Markdown format (.md) with UTF-8 encoding. Figures should be in PDF, PNG, EPS or SVG format, with PDF preferred for vector graphics and PNG for raster graphics.
 
 ## Software architectural preferences and coding style
+
 Software scripts should be modular and reusable. Unless it is a properly documented module or library (Julia or Python), each script should have a single responsibility and should not be too long. When there are many scripts, they should be organized in subfolders by purpose. As a general rule, no script folder should hold more than 7 scripts and more than 7 subfolders.
 
-Data wrangling scripts should read and write data from flat files in the folder. Scripts should reat one or more input files at the beginning aand end with writing preferable one datafile. If they are closely related, multiple data files can be saved by a single script (such as subsamples for different years or different sectors). The user should be able to unambiguously determine for each data files which script created it. All data wrangling scripts should be runnable from the Makefile. Intermediate data files should be saved in the `temp/` subfolder, and final output files should be saved in the `output/` subfolder.
+Data wrangling scripts should read and write data from flat files in the folder. Scripts should read one or more input files at the beginning and end with writing preferably one datafile. If they are closely related, multiple data files can be saved by a single script (such as subsamples for different years or different sectors). The user should be able to unambiguously determine for each data files which script created it. All data wrangling scripts should be runnable from the Makefile. Intermediate data files should be saved in the `temp/` subfolder, and final output files should be saved in the `output/` subfolder.
 
 Analysis scripts should also create one or more output in flat files, such as a LaTeX table or a PNG figure. Intermediate results should be saved in the `temp/` subfolder, and final output files should be saved in the `output/` subfolder. 
 
@@ -52,28 +66,33 @@ Always use relative paths (either relative to the script or relative to the root
 
 Generalize functionality as much as possible, but not more. For example, when looking for the largest connected component of a graph of managers and firms, write functions suitable for any bipartite graph, but do not generalize to any graph. Try to follow the SOLID principles of software design, especially the Single Responsibility Principle (SRP) and the Dependency Inversion Principle (DIP). In particular, avoid hardcoding application-specific parameters and file paths in the code. Instead, use configuration files or command line arguments to pass parameters to the scripts.
 
-
 ### Stata
-Stata scripts should follow the _CEU MicroData Stata Style Guide_ available in the Appendix of this document. 
+
+Stata scripts should follow the _CEU MicroData Stata Style Guide_ available in the Appendix of this document.
 
 ### Julia
+
 Julia code should be properly organized into single responsibility functions. When appropriate, define structs to encapsulate related data. Always use type annotations in function signatures to improve performance and readability. Lean into multiple dispatch to create generic functions that can handle different types of inputs while maintaining good, human readable names. For example, `solve` is a good name for a function that solves an ordinary differential equation, but also for a function that looks for the root of a nonlinear equation.
 
 Use `Pkg` for package management and ensure that all dependencies are listed in the `Project.toml` file. Use `DataFrames` for data manipulation tasks, and `CSV` for simple tasks. Use `julia --project=. code/your_script.jl` to run Julia scripts from the command line, and ensure that all scripts are organized in a way that allows for easy execution from the Makefile.
 
 ### Python
+
 Python scripts should follow the _PEP 8_ style guide for Python code. Use type annotations in function signatures to improve readability and maintainability. Use `uv` for package management and ensure that all dependencies are listed in the `requirements.txt` file. Use `polars` for larger data manipulation tasks, and `CSV` for simple tasks. Avoid using pandas unless absolutely necessary, as it is not preferred by the user. Use `uv run` to run Python scripts from the command line, and ensure that all scripts are organized in a way that allows for easy execution from the Makefile.
 
 ## Writing style
+
 When writing documentation or reports, use the detail-oriented, matter-of-fact, active academic style shown in the writing samples in the Appendix of this document.
 
 # Appendix
 ## bead documentation
+
 Bead is available at https://bead.zip
 
 > Copyright Krisztián Fekete, 2015-2020. License: Unlicense (https://unlicense.org/)
 
 ### Overview
+
 #### The problem
 
 We have a highly distributed analysis workflow, but:
@@ -138,9 +157,9 @@ Transparent means, that the code/data layout is preserved as it looked like at t
 
 #### Extensions
 
-Transparency is much weaker than reproducable, but it is on that road: the package can be reproducible if there is no change to the code after the output has been generated.
+Transparency is much weaker than reproducible, but it is on that road: the package can be reproducible if there is no change to the code after the output has been generated.
 
-The final goal of course is reproducability: collecting all the packages created, we can generate the output using only the primary inputs and the metadata in the packages.
+The final goal of course is reproducibility: collecting all the packages created, we can generate the output using only the primary inputs and the metadata in the packages.
 
 Reproducability can be achieved by tooling and feedback (by an automatism - software reproducing agent).
 
@@ -149,7 +168,7 @@ Possible further tooling (third party apps?):
         - works with a full dependency graph
     - automatic verification agent: check if there is enough metadata and code to reproduce the data in the package
         - works with a single package and its direct dependencies
-        - reports on reproducability of data packages
+        - reports on reproducibility of data packages
         - colored output (red - not reproducible, green - OK)
     - visualize packages and their dependencies as a dependency graph of a repo
 
@@ -211,6 +230,7 @@ A bead is a zip file, so with an unarchiver the data can be extracted and used.
 Although it is easy to get access to data, it should be last resort - if you process the data in this way the references to inputs can not be tracked for you.
 
 ### Use cases
+
 ### Create a new bead
 
 Initial setup:
@@ -276,9 +296,9 @@ This stores output, computation and references to inputs. Now the content of `/s
     hello_20160527T130218513418+0200.zip
     name_20160527T113419427017+0200.zip
 
-These are regular (and, in this case, small) zip files, which can be transferred by usual means (e.g. emailed) to collaborators. The recipient can process them via the `bead` tool, keep the integrity of provenance information, and adding further dependencies as needed. Even withouth the tool, she can access the data by directly unzipping the file and inspecting its content. 
+These are regular (and, in this case, small) zip files, which can be transferred by usual means (e.g. emailed) to collaborators. The recipient can process them via the `bead` tool, keep the integrity of provenance information, and adding further dependencies as needed. Even without the tool, she can access the data by directly unzipping the file and inspecting its content.
 
-The output of the computation is stored under `data/*`. An outide collaborator without access to `bead` can just ignore the computation and all other metadata.
+The output of the computation is stored under `data/*`. An outside collaborator without access to `bead` can just ignore the computation and all other metadata.
 
     /somepath$ unzip -p BeadBox/hello_20160527T130218513418+0200.zip data/greeting
     Hello World!
@@ -355,7 +375,7 @@ Write `save "data/worker.dta"` and `do "regression.do"`, not ~~`save data/worker
 
 #### Use relative path whenever possible
 
-Write `save "../data/worker.dta"`, not ~~`save "/Users/koren/Tresorit/research/data/worker.dta`~~. Nobody else will have the same absolute path as you have on your system. Adopt a convention of where you are running scripts from and make paths relative to that location.
+Write `save "../data/worker.dta"`, not ~~`save "/Users/koren/Tresorit/research/data/worker.dta"`~~. Nobody else will have the same absolute path as you have on your system. Adopt a convention of where you are running scripts from and make paths relative to that location.
 
 ## Naming
 
@@ -365,7 +385,7 @@ Use `generate ln_wage = ln(wage)` and `summarize ln_wage, detail`, not ~~`g ln_w
 
 #### Do not abbreviate variable names
 
-Use `summarize ln_wage, detail`, not ~~`sumarize ln_w, detail`~~. Both will work, because Stata allows you abbreviation, but the latter is very error prone. In fact, you can turn off variable name abbreviation with `set varabbrev off, permanent`.
+Use `summarize ln_wage, detail`, not ~~`summarize ln_w, detail`~~. Both will work, because Stata allows you abbreviation, but the latter is very error prone. In fact, you can turn off variable name abbreviation with `set varabbrev off, permanent`.
 
 #### Use verbose names to the extent possible
 
