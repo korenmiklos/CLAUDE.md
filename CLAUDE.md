@@ -64,6 +64,40 @@ Scripts should be modular with single responsibility. Organize by purpose in sub
 
 Follow _CEU MicroData Stata Style Guide_, @instructions/STATA.md 
 
+Beyond the CEU MicroData Stata Style Guide, follow additional conventions:
+
+#### Script Structure
+- Display versions of Stata packages used in the script, start with `which <package>`
+- Use `clear all` for setup (not `set more off` or `cap log close`)
+
+### Variable Creation
+- Use `generate byte` for binary variables when memory efficient
+- Use `generate str` for string variables with explicit type
+- Prefer `egen` functions with `by()` option over `bysort` + `generate`
+- Use descriptive temporary variable names (e.g., `fmtag`, `max_n_managers`)
+
+### Data Manipulation Patterns
+- Use `keep if` early to reduce dataset size
+- Use `drop` immediately after variables are no longer needed
+- Use `preserve`/`restore` for temporary data operations
+- Use `tempfile` and backtick notation for temporary datasets
+- Use `collapse` with multiple statistics: `(mean) var1 (firstnm) var2`
+
+### Advanced Techniques
+- Use `egen tag()` for creating unique identifiers across groups
+- Use `reshape wide` for pivoting data with string suffixes
+- Use `merge ... using ..., keep(match) nogen` for clean merging
+- Use `inrange()` function instead of `>= & <=` conditions
+- Use `inlist()` function instead of `== | ==` conditions
+- Use `!missing()` instead of `~missing()` for clarity
+
+### Comments and Documentation
+- Use explanatory comments before complex operations. Explain the why, not the what
+- Include verification steps with `count if` statements
+- Add context for business logic (e.g., "switching years can be noisy")
+- Use descriptive variable names that don't require comments
+
+
 ### Julia
 
 Single responsibility functions with type annotations. Use structs and multiple dispatch with readable names. Use `DataFrames` for data manipulation, `CSV` for simple tasks. Run with `julia --project=. code/your_script.jl`.
