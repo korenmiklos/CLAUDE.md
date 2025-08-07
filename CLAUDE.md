@@ -10,7 +10,7 @@ All scripts should be runnable from the command line. The default shell of the u
 
 ### Make (mandatory)
 
-A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting.
+A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting. Use automatic make variables like $@ and $<, pattern matching, and make functions when relevant. Target directories should be first created with `mkdir -p` in each recipe.
 
 ### Bead (mandatory)
 
