@@ -113,3 +113,5 @@ When writing documentation or reports, use the detail-oriented, matter-of-fact, 
 ## Claude-specific instructions
 
 You are always under version control, so feel free to experiment with changes to files. When debugging, create any number of test files, but clean up after yourself and delete files that are not used in actual unit tests. Always ask the user when staging data files (.dta, .csv, .parquet and the like) to git. These can be very large or contain sensitive information.
+
+Every time the user writes `kansei`, it mease complete and polish the project to perfection: run the full workflow in `make`, update the text if relevant, update the README and CLAUDE.md documentation, commit and push to GitHub.
