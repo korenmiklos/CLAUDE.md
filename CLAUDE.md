@@ -10,7 +10,7 @@ All scripts should be runnable from the command line. The default shell of the u
 
 ### Make (mandatory)
 
-A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting. Use automatic make variables like `$@` and `$<`, pattern matching, and make functions when relevant. Target directories should be first created with `mkdir -p` in each recipe.
+A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting. 
 
 ### Bead (mandatory)
 
@@ -59,6 +59,13 @@ Prefer plain text, UTF-8 encoded. Use CSV for tabular data, .dta for Stata, Parq
 ## Software architectural preferences and coding style
 
 Scripts should be modular with single responsibility. Organize by purpose in subfolders (max 7 scripts/subfolders each). Scripts read inputs at start, write outputs at end. Use relative paths only. Follow SOLID principles, avoid hardcoding parameters. All scripts runnable from Makefile with outputs to `temp/` or `output/` as appropriate.
+
+### Make
+- Use named variables to parametrize build and execution. For example, `CORES := 4`. All parameters are declared at the top of the Makefile and are all uppercase.
+- Software tool calling should be parametrized for ease of change. For example, `STATA := stata -b do` and `PYTHON := uv run python`.
+- Use automatic make variables like `$@` and `$<`, pattern matching, and make functions when relevant.
+- Target directories should be first created with `mkdir -p $(dir $@)` in each recipe.
+- Recipes should be read from bottom up. In a simple A -> B -> C workflow, recipe C should be on top, followed by B then A.
 
 ### Stata
 
