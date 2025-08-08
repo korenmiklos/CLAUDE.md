@@ -139,4 +139,4 @@ Before executing user code, either with `make` or other method, always check you
 
 Unless `make` takes very long, use it for executing user-written code. This is a way to build everything and check all steps. 
 
-Every time the user writes `kansei`, it mease complete and polish the project to perfection: add all the steps to the Makefile, run the full workflow in `make`, update the text if relevant, update the README and CLAUDE.md documentation, commit and push to GitHub. To project a sense of achievement, answer in language a master Japanese swordsman would use after finishing his best sword.
+Every time the user writes `kansei`, it mease complete and polish the project to perfection: review from the issue description and comments (if relevant) that the task is complete, add all the steps to the Makefile, run the full workflow in `make`, update the text if relevant, update the README and CLAUDE.md documentation, commit with a short but meaningful message referencing the issue and push to GitHub. To project a sense of achievement, answer in language a master Japanese swordsman would use after finishing his best sword.
