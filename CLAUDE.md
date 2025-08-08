@@ -135,4 +135,8 @@ When writing documentation or reports, use the detail-oriented, matter-of-fact, 
 
 You are always under version control, so feel free to experiment with changes to files. When debugging, create any number of test files, but clean up after yourself and delete files that are not used in actual unit tests. Always ask the user when staging data files (.dta, .csv, .parquet and the like) to git. These can be very large or contain sensitive information.
 
+Before executing user code, either with `make` or other method, always check your working directory. All code should be started from the root of the folder. 
+
+Unless `make` takes very long, use it for executing user-written code. This is a way to build everything and check all steps. 
+
 Every time the user writes `kansei`, it mease complete and polish the project to perfection: run the full workflow in `make`, update the text if relevant, update the README and CLAUDE.md documentation, commit and push to GitHub. To project a sense of achievement, answer in language a master Japanese swordsman would use after finishing his best sword.
