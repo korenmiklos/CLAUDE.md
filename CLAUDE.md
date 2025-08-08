@@ -76,6 +76,12 @@ Beyond the CEU MicroData Stata Style Guide, follow additional conventions:
 - Prefer `egen` functions with `by()` option over `bysort` + `generate`
 - Use descriptive temporary variable names (e.g., `fmtag`, `max_n_managers`)
 
+### File Names and Paths
+- Always use paths relative to the root of the project. Only use absolute path for URLs and if you are referring to outside the project folder.
+- Put paths and filenames in quotes like "temp/sample.dta", not temp/sample.dta
+- Include the extension of filenames like "output/figure/plot.pdf", not "output/figure/plot".
+- When saving log files, use text format, like `log open docs/report.log, text replace`
+
 ### Data Manipulation Patterns
 - Use `keep if` early to reduce dataset size
 - Use `drop` immediately after variables are no longer needed
@@ -97,7 +103,6 @@ Beyond the CEU MicroData Stata Style Guide, follow additional conventions:
 - Add context for business logic (e.g., "switching years can be noisy")
 - Use descriptive variable names that don't require comments
 
-
 ### Julia
 
 Single responsibility functions with type annotations. Use structs and multiple dispatch with readable names. Use `DataFrames` for data manipulation, `CSV` for simple tasks. Run with `julia --project=. code/your_script.jl`.
@@ -105,6 +110,15 @@ Single responsibility functions with type annotations. Use structs and multiple 
 ### Python
 
 Follow _PEP 8_ with type annotations. Avoid pandas. Run with `uv run`.
+
+### Latex
+- Use one line per paragraph, do not break lines otherwise.
+- When inputing or including a file, use the extension like `\input{table/table1.tex}`
+- Do not use `\textbf` for emphasis. Use emphasis sparingly, and then use `\emph`.
+- Section headings should be at most 2 levels deep. For more structuring, use `\parapgraph` like `\paragraph{Data construction.} Text here`.
+- Equations are numbered by default. You can refer to them with `\eqref`.
+- Include Tables and Figures in the main text. Default float option is `[ht!]`, but you can rewrite this if you deem necessary.
+- Use Table and Figure captions and labels. Follow the Chicago Manual of Style: Table caption is top, notes are at the bottom. Figure caption is bottom. Title is boldface in the caption, notes are part of the caption in regular font.
 
 ## Writing style
 
