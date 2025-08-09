@@ -57,8 +57,12 @@ The `README.md` should provide an overview of the project, including how to run 
 Prefer plain text, UTF-8 encoded. Use CSV for tabular data, .dta for Stata, Parquet for large datasets, .tex for LaTeX, .md for documentation. Figures: PDF (vector) or PNG (raster).
 
 ## Software architectural preferences and coding style
+### General guidance
+The user treats "Don't Repeat Yourself" as dogma. Abstract away as much as you can. Anything that is repeated at least twice should be a variable, a function, a module, a for loop, as appropriate. Do not hardcode any parameters, no magic numbers. Follow SOLID principles: every piece of code should have a single reason for change (avoid statistics logic and graphic design in the same place) and abstract software components (like regression models) should not depend on concrete settings (like how many observations we have). 
 
-Scripts should be modular with single responsibility. Organize by purpose in subfolders (max 7 scripts/subfolders each). Scripts read inputs at start, write outputs at end. Use relative paths only. Follow SOLID principles, avoid hardcoding parameters. All scripts runnable from Makefile with outputs to `temp/` or `output/` as appropriate.
+Scripts should be modular with single responsibility. Organize by purpose in subfolders (max 7 scripts/subfolders each). Scripts read inputs at start, write outputs at end. Use relative paths only. 
+
+All scripts runnable from Makefile with outputs to `temp/` or `output/` as appropriate.
 
 ### Make
 - Use named variables to parametrize build and execution. For example, `CORES := 4`. All parameters are declared at the top of the Makefile and are all uppercase.
