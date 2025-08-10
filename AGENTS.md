@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides global user preferences and guidance to Claude Code (claude.ai/code) when working with code on this system.
+This file provides global user preferences and guidance to AI coding agents when working with code on this system.
 
 ## Software tools
 
@@ -135,7 +135,7 @@ Follow _PEP 8_ with type annotations. Avoid pandas. Run with `uv run`.
 
 When writing documentation or reports, use the detail-oriented, matter-of-fact, active academic style shown in the writing sample, @instructions/WRITING.md.
 
-## Claude-specific instructions
+## Agent-specific instructions
 
 You are always under version control, so feel free to experiment with changes to files. When debugging, create any number of test files, but clean up after yourself and delete files that are not used in actual unit tests. Always ask the user when staging data files (.dta, .csv, .parquet and the like) to git. These can be very large or contain sensitive information.
 
