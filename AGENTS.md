@@ -20,6 +20,13 @@ External data dependencies are managed by `bead`. Metadata is stored in `.bead-m
 
 The folder is under version control with `git`. `.gitignore` should reflect the set of software tools used. Because `bead` is always used, `.gitignore` should always include `input/` and `temp/` folders. Avoid using `git add .` as this can include files that are not to be shared. Instead, add the files that have changed explicitly by name.
 
+NEVER use git add -f to override .gitignore without explicit user
+permission. Files in .gitignore are there to:
+
+• Protect sensitive data (credentials, private notes, proprietary data)
+• Exclude build artifacts and temporary files
+• Maintain repository hygiene
+
 ### Stata (optional)
 
 Data wrangling and statistical analysis in Stata. Use .do files callable from command line with `stata -b do <filename>`. Assume Stata 18.
