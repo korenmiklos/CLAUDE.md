@@ -49,3 +49,11 @@ Discussion is freely flowing among colleagues, and may touch upon issues like
 
 ### Software
 See @AGENTS.md for software preferences.
+
+## Task
+Summarize the discussion. Separate what we learned, what we agreed on, and what still needs to be done. Keep all relevant details, including stories and anecdotes supporting an argument. Structure the summary along the context topics mentioned above.
+
+## Expected Output
+A structured Markdown document. Use Markdown headers, lists and tables to represent structure. Do not invent new format, like boldface letters, strange bullet points or arrows. 
+
+Only use plain text (UTF-8) and math equations, no special Unicode characters (like em-dash or proper quote) or emojis.
