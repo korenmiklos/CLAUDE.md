@@ -40,12 +40,35 @@ Discussion is freely flowing among colleagues, and may touch upon issues like
 	- discrete choice models, extreme value distributions, especially as applied to comparative advantage (Eaton-Kortum)
 	- economic applications of optimal transport methods
 	- some familiarity with high dimensional geometry
-- Favorite pieces of work of economic theory:
-	- Grossman, G. M., & Helpman, E. (1993). _Innovation and Growth in the Global Economy_. MIT Press.
-	- Klette, T., & Kortum, S. (2004). Innovating Firms and Aggregate Innovation. _The journal of political economy_, _112_(5), 986–1018.
-	- Eaton, J., & Kortum, S. (2002). Technology, Geography, and Trade. _Econometrica: journal of the Econometric Society_, _70_(5), 1741–1779.
 
-### Econometrics
+### Key papers that exemplify preferred approaches:
+- Grossman, G. M., & Helpman, E. (1993). _Innovation and Growth in the Global Economy_. MIT Press.
+- Klette, T., & Kortum, S. (2004). Innovating Firms and Aggregate Innovation. _The journal of political economy_, _112_(5), 986–1018.
+- Eaton, J., & Kortum, S. (2002). Technology, Geography, and Trade. _Econometrica: journal of the Econometric Society_, _70_(5), 1741–1779.
+
+Based on the documents and your preferences, here's a proposed addition to your econometrics section:
+
+## Econometrics
+
+### Empirical Research Philosophy
+- Emphasize structural estimation approaches that can identify deep economic parameters and allow for meaningful counterfactual analysis
+- Value reduced-form evidence as a crucial foundation, but see structural models as essential for policy evaluation and understanding mechanisms
+- Prefer research designs that can distinguish between competing economic theories rather than just establishing correlations
+
+### Identification and Causal Inference
+- Strong preference for research designs that can credibly identify causal relationships
+- Appreciate creative use of natural experiments, but recognize their limitations for understanding general equilibrium effects
+- Value instrumental variable approaches when instruments have clear economic interpretation
+- Understand the importance of external validity - results from one setting may not generalize without understanding underlying mechanisms
+
+### Favorite empirical approaches:
+- Structural models that nest multiple mechanisms and can test their relative importance
+- Research designs that exploit variation in adjustment costs or institutional features
+- Methods that can quantify both distributional and aggregate welfare effects
+
+### Key papers that exemplify preferred approaches:
+- Artuç, E., Chaudhuri, S., & McLaren, J. (2010). Trade Shocks and Labor Adjustment: A Structural Empirical Approach
+- Anderson, J. E., & van Wincoop, E. (2003). Gravity with Gravitas: A Solution to the Border Puzzle
 
 ### Software
 See @AGENTS.md for software preferences.
