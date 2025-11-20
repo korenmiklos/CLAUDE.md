@@ -10,11 +10,11 @@ All scripts should be runnable from the command line. The default shell of the u
 
 ### Make (mandatory)
 
-A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting. 
+A single Makefile in the root of the folder should be used to run all scripts. The Makefile should have targets for each major step in the workflow, such as data wrangling, analysis, and reporting. Don't use Makefile as a script, but as a build tool: how to build the target from source using a recipe. For analytics, targets are data or research artifacts, sources are scripts and other data artifacts. For example, `temp/clean_data.csv: code/create/clean.py input/raw/data.csv` with the recipe `python $<`.
 
 ### Bead (mandatory)
 
-External data dependencies are managed by `bead`. Metadata is stored in `.bead-meta/` subfolder. Input datasets are in `input/` subfolder. Use `bead input load <name>` for missing data and `bead input update <name>` for updates. The `temp/` subfolder is for temporary files, `output/` for final output files.
+External data dependencies are managed by `bead`. Metadata is stored in `.bead-meta/` subfolder. Input datasets are in `input/` subfolder. Use `bead input load <name>` for missing data and `bead input update <name>` for updates. The `temp/` subfolder is for temporary files, `output/` for final output files. Check documentation at https://context7.com/bead-project/bead/llms.txt?tokens=10000
 
 ### git (mandatory)
 
